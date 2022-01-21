@@ -3,15 +3,15 @@ import 'package:web_bases/ui/shared/custom_app_menu.dart';
 import 'package:web_bases/ui/shared/custom_flat_button.dart';
 
 
-class CounterPage extends StatefulWidget {
+class CounterProviderPage extends StatefulWidget {
 
-  const CounterPage({Key? key}) : super(key: key);
+  const CounterProviderPage({Key? key}) : super(key: key);
 
   @override
-  State<CounterPage> createState() => _CounterPageState();
+  State<CounterProviderPage> createState() => _CounterProviderPageState();
 }
 
-class _CounterPageState extends State<CounterPage> {
+class _CounterProviderPageState extends State<CounterProviderPage> {
   int counter = 10;
 
   @override
@@ -23,7 +23,7 @@ class _CounterPageState extends State<CounterPage> {
           const CustomAppMenu(),
           const Spacer(),
           const Text(
-            'Counter Stateful',
+            'Counter Provider',
             style: TextStyle( fontSize: 20 ),
           ),
           FittedBox(
