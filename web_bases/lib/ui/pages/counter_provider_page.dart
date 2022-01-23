@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:web_bases/providers/counter_provider.dart';
-import 'package:web_bases/ui/shared/custom_app_menu.dart';
 import 'package:web_bases/ui/shared/custom_flat_button.dart';
-
 
 class CounterProviderPage extends StatefulWidget {
 
@@ -37,8 +35,6 @@ class _CounterProviderPageBody extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CustomAppMenu(),
-          const Spacer(),
           const Text(
             'Counter Provider',
             style: TextStyle( fontSize: 20 ),
@@ -66,7 +62,6 @@ class _CounterProviderPageBody extends StatelessWidget {
               ),
             ],
           ),
-          const Spacer(),
         ],
       )
     );
