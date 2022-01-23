@@ -15,7 +15,12 @@ class ErrorPage extends StatelessWidget {
           children: [
             const Text('404', style: TextStyle(fontSize: 60)),
             const SizedBox(height: 10),
-            const Text('No se encontró la página', style: TextStyle(fontSize: 40)),
+            const FittedBox(
+              child: Padding(
+                padding: EdgeInsets.symmetric( horizontal: 10.0 ),
+                child: Text('No se encontró la página', style: TextStyle(fontSize: 40)),
+              ),
+            ),
             CustomFlatButton(
               text: 'Regresar',
               onPressed: () => Navigator.pushNamed(context, '/stateful')

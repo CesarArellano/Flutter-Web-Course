@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Routes App',
       initialRoute: '/stateful',
       onGenerateRoute: RouteGenerator.generateRoute,
-      navigatorKey: navigationService.navigationKey,
+      navigatorKey: locator<NavigationService>().navigationKey,
       builder: ( _, child) {
         return MainLayoutPage(
           child: child ?? const CircularProgressIndicator() 
