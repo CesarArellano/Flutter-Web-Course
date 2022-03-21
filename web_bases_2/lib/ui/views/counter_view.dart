@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_bases/ui/shared/custom_app_menu.dart';
+
 import 'package:web_bases/ui/shared/custom_flat_button.dart';
 
 
@@ -20,8 +20,6 @@ class _CounterViewState extends State<CounterView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CustomAppMenu(),
-          const Spacer(),
           const Text(
             'Counter Stateful',
             style: TextStyle( fontSize: 20 ),
@@ -49,7 +47,6 @@ class _CounterViewState extends State<CounterView> {
               ),
             ],
           ),
-          const Spacer(),
         ],
       )
     );

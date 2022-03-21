@@ -9,7 +9,7 @@ import 'package:web_bases/ui/pages/error_page.dart';
 class RouteGenerator {
 
   static Route<dynamic> generateRoute( RouteSettings settings ) {
-    switch (settings.name) {
+    switch ( settings.name ) {
       case '/stateful':
         return _fadeRoute( const CounterPage(), '/stateful' );
       case '/provider':
@@ -20,6 +20,7 @@ class RouteGenerator {
   }
 
   static PageRoute _fadeRoute( Widget child, String routeName ) {
+
     return PageRouteBuilder(
       settings: RouteSettings( name: routeName ),
       pageBuilder: ( _, __, ___ ) => child,
