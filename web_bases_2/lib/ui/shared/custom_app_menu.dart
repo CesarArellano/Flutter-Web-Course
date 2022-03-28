@@ -46,12 +46,17 @@ class _MobileMenu extends StatelessWidget {
             text: 'Contador Provider',
             onPressed: () => locator<NavigationService>().navigateTo('/provider'),
           ),
-
           const SizedBox(width: 10),
           CustomFlatButton(
             color: Colors.black,
             text: 'Otra página',
             onPressed: () => locator<NavigationService>().navigateTo('/ABC'),
+          ),
+          const SizedBox(width: 10),
+          CustomFlatButton(
+            color: Colors.black,
+            text: 'Stateful 15',
+            onPressed: () => locator<NavigationService>().navigateTo('/stateful/15'),
           ),
         ],
       ),
@@ -90,6 +95,12 @@ class _TableDesktopMenu extends StatelessWidget {
             color: Colors.black,
             text: 'Otra página',
             onPressed: () => locator<NavigationService>().navigateTo('/ABC'),
+          ),
+          const SizedBox(width: 10),
+          CustomFlatButton(
+            color: Colors.black,
+            text: 'Stateful 15',
+            onPressed: () => locator<NavigationService>().navigateTo('/stateful/15'),
           ),
         ],
       ),
