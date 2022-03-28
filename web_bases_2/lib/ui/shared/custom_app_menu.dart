@@ -12,7 +12,7 @@ class CustomAppMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: ( _, BoxConstraints constraints) {
-        return ( constraints.maxWidth > 500 )
+        return ( constraints.maxWidth > 768 )
           ? const _TableDesktopMenu()
           : const _MobileMenu();
       },

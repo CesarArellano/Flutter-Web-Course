@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
           child: child ?? const CircularProgressIndicator() 
         );
       },
+      theme: Theme.of(context).copyWith(
+        scaffoldBackgroundColor: Colors.white
+      ),
     );
   }
 }
