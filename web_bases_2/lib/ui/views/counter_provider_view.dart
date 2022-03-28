@@ -6,20 +6,19 @@ import 'package:web_bases/providers/counter_provider.dart';
 import 'package:web_bases/ui/shared/custom_flat_button.dart';
 
 
-class CounterProviderView extends StatefulWidget {
+class CounterProviderView extends StatelessWidget {
 
-  const CounterProviderView({Key? key}) : super(key: key);
-
-  @override
-  State<CounterProviderView> createState() => _CounterProviderViewState();
-}
-
-class _CounterProviderViewState extends State<CounterProviderView> {
+  const CounterProviderView({
+    Key? key,
+    required this.base  
+  }) : super(key: key);
   
+  final String base;
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: ( _ ) => CounterProvider(),
+      create: ( _ ) => CounterProvider( base ),
       child: const _CounterProviderPageBody(),
     );
   }

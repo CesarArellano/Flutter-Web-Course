@@ -18,7 +18,7 @@ class _CounterProviderPageState extends State<CounterProviderPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: ( _ ) => CounterProvider(),
+      create: ( _ ) => CounterProvider('0'),
       child: const _CounterProviderPageBody(),
     );
   }
