@@ -6,17 +6,25 @@ class CustomAppMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: 150,
-      height: 50,
-      color: Colors.black,
-      child: Row(
-        children: [
-          Text('Menú', style: GoogleFonts.poppins( color: Colors.white, fontSize: 18 )),
-          const Spacer(),
-          const Icon(Icons.menu, color: Colors.white)
-        ],
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          debugPrint('Hola');
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          width: 150,
+          height: 50,
+          color: Colors.black,
+          child: Row(
+            children: [
+              Text('Menú', style: GoogleFonts.poppins( color: Colors.white, fontSize: 18 )),
+              const Spacer(),
+              const Icon(Icons.menu, color: Colors.white)
+            ],
+          ),
+        ),
       ),
     );
   }
