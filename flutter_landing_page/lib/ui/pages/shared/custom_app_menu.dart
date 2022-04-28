@@ -39,7 +39,7 @@ class _CustomAppMenuState extends State<CustomAppMenu> with SingleTickerProvider
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           width: 150,
-          height: isOpen ? 310 : 50,
+          height: isOpen ? 300 : 50,
           color: Colors.black,
           child: Column(
             children: [
