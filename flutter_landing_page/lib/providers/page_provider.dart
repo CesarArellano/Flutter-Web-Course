@@ -11,15 +11,18 @@ class PageProvider extends ChangeNotifier {
   final List<String> _pages = ['home', 'about', 'pricing', 'contact', 'location'];
 
   void createScrollController(String routeName) {
-    scrollController = PageController(
-      initialPage: getPageIndex(routeName)
-    );
+    final initialPageIndex = getPageIndex(routeName);
+    
+    scrollController = PageController( initialPage: initialPageIndex );
+
+    html.document.title =  _pages[initialPageIndex].capitalize();
 
     scrollController.addListener(() {
       final pageIndex = (scrollController.page ?? 0).round();
       if( _currentIndex != pageIndex ) {
         html.window.history.pushState(null, 'none', '#/${ _pages[pageIndex] }');
         _currentIndex = pageIndex;
+        html.document.title = _pages[pageIndex].capitalize();
       }
     });
   }
@@ -35,5 +38,11 @@ class PageProvider extends ChangeNotifier {
       duration: const Duration(milliseconds: 200), 
       curve: Curves.easeInOut
     );
+  }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${ this[0].toUpperCase() }${ substring(1).toLowerCase() }";
   }
 }
