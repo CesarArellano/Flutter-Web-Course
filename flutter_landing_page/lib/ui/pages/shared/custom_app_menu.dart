@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_landing_page/providers/page_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'custom_menu_item.dart';
 
@@ -23,6 +25,8 @@ class _CustomAppMenuState extends State<CustomAppMenu> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
+    final pageProvider = Provider.of<PageProvider>(context);
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -48,37 +52,27 @@ class _CustomAppMenuState extends State<CustomAppMenu> with SingleTickerProvider
               ...[
                 CustomMenuItem(
                   text: 'Home',
-                  onPressed:() {
-                    
-                  },
+                  onPressed:() => pageProvider.goTo(0),
                   delay: 20,
                 ),
                 CustomMenuItem(
                   text: 'About',
-                  onPressed:() {
-                    
-                  },
+                  onPressed:() => pageProvider.goTo(1),
                   delay: 40,
                 ),
                 CustomMenuItem(
                   text: 'Pricing',
-                  onPressed:() {
-                    
-                  },
+                  onPressed:() => pageProvider.goTo(2),
                   delay: 60,
                 ),
                 CustomMenuItem(
                   text: 'Contact',
-                  onPressed:() {
-                    
-                  },
+                  onPressed:() => pageProvider.goTo(3),
                   delay: 80,
                 ),
                 CustomMenuItem(
                   text: 'Location',
-                  onPressed:() {
-                    
-                  },
+                  onPressed:() => pageProvider.goTo(4),
                   delay: 100,
                 ),
               ]
