@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'Home Page',
+      initialRoute: '/home',
       onGenerateRoute: Flurorouter.router.generator,
     );
   }
