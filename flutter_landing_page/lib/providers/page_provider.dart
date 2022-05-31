@@ -6,12 +6,22 @@ import 'package:universal_html/html.dart' as html;
 class PageProvider extends ChangeNotifier {
   
   PageController scrollController = PageController();
+  int _currentIndex = 0;
+
   final List<String> _pages = ['home', 'about', 'pricing', 'contact', 'location'];
 
   void createScrollController(String routeName) {
     scrollController = PageController(
       initialPage: getPageIndex(routeName)
     );
+
+    scrollController.addListener(() {
+      final pageIndex = (scrollController.page ?? 0).round();
+      if( _currentIndex != pageIndex ) {
+        html.window.history.pushState(null, 'none', '#/${ _pages[pageIndex] }');
+        _currentIndex = pageIndex;
+      }
+    });
   }
   
   int getPageIndex(String routeName) {
@@ -20,8 +30,6 @@ class PageProvider extends ChangeNotifier {
   }
 
   void goTo(int index) {
-    final routeName = _pages[index];
-    html.window.history.pushState(null, 'none', '#/$routeName');
     scrollController.animateToPage(
       index,
       duration: const Duration(milliseconds: 200), 
