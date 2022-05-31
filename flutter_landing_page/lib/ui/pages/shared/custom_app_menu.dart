@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_landing_page/providers/page_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/page_provider.dart';
 import 'custom_menu_item.dart';
 
 class CustomAppMenu extends StatefulWidget {

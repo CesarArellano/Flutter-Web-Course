@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
-import 'package:flutter_landing_page/router/route_handlers.dart';
+
+import 'route_handlers.dart';
 
 class Flurorouter {
   

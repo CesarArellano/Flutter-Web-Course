@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_landing_page/providers/page_provider.dart';
-
-import 'package:flutter_landing_page/ui/pages/shared/custom_app_menu.dart';
-
-import 'package:flutter_landing_page/ui/pages/views/about_view.dart';
-import 'package:flutter_landing_page/ui/pages/views/contact_view.dart';
-import 'package:flutter_landing_page/ui/pages/views/home_view.dart';
-import 'package:flutter_landing_page/ui/pages/views/location_view.dart';
-import 'package:flutter_landing_page/ui/pages/views/pricing_view.dart';
 import 'package:provider/provider.dart';
+
+import '../../providers/page_provider.dart';
+import 'shared/custom_app_menu.dart';
+import 'views/about_view.dart';
+import 'views/contact_view.dart';
+import 'views/home_view.dart';
+import 'views/location_view.dart';
+import 'views/pricing_view.dart';
 
 class HomePage extends StatelessWidget {
   

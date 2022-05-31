@@ -1,8 +1,9 @@
 
 import 'package:fluro/fluro.dart';
-import 'package:flutter_landing_page/providers/page_provider.dart';
-import 'package:flutter_landing_page/ui/pages/home_page.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/page_provider.dart';
+import '../ui/pages/home_page.dart';
 
 final homeHandler = Handler(
   handlerFunc: ( context, params ) {
