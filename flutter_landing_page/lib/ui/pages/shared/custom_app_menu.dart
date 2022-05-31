@@ -39,7 +39,7 @@ class _CustomAppMenuState extends State<CustomAppMenu> with SingleTickerProvider
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           width: 150,
-          height: isOpen ? 300 : 50,
+          height: isOpen ? 290 : 50,
           color: Colors.black,
           child: Column(
             children: [
@@ -51,30 +51,35 @@ class _CustomAppMenuState extends State<CustomAppMenu> with SingleTickerProvider
                   onPressed:() {
                     
                   },
+                  delay: 20,
                 ),
                 CustomMenuItem(
                   text: 'About',
                   onPressed:() {
                     
                   },
+                  delay: 40,
                 ),
                 CustomMenuItem(
                   text: 'Pricing',
                   onPressed:() {
                     
                   },
+                  delay: 60,
                 ),
                 CustomMenuItem(
                   text: 'Contact',
                   onPressed:() {
                     
                   },
+                  delay: 80,
                 ),
                 CustomMenuItem(
                   text: 'Location',
                   onPressed:() {
                     
                   },
+                  delay: 100,
                 ),
               ]
             ],
