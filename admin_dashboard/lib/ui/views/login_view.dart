@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginView extends StatelessWidget {
   
@@ -6,8 +7,8 @@ class LoginView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('LoginView'),
+    return Center(
+      child: Text('LoginView', style: GoogleFonts.poppins().copyWith(color: Colors.white)),
     );
   }
 }

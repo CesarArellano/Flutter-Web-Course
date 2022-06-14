@@ -1,11 +1,10 @@
 import 'package:fluro/fluro.dart';
-
-import '../ui/layouts/auth/auth_layout.dart';
+import 'package:admin_dashboard/ui/views/login_view.dart';
 
 class AdminHandlers {
   static Handler login = Handler(
     handlerFunc:(context, parameters) {
-      return const AuthLayout();
+      return const LoginView();
     },
   );
 }

@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
 import 'package:flutter/material.dart';
 
 import 'theme/app_theme.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Flurorouter.rootRoute,
       onGenerateRoute: Flurorouter.router.generator,
       builder: ( _, child) {
-        return child!;
+        return AuthLayout(child: child ?? const SizedBox());
       },
     );
   }
