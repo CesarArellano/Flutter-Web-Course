@@ -19,4 +19,24 @@ class AppTheme {
       thumbColor: MaterialStateProperty.all( Colors.grey[400] )
     )
   );
+
+  static InputDecoration buildInputDecoration({
+    required String hintText,
+    required String label,
+    IconData? icon,
+  }) {
+    return InputDecoration(
+      border: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white30)
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white30)
+      ),
+      hintText: hintText,
+      hintStyle: const TextStyle(color: Colors.grey),
+      label: Text(label),
+      labelStyle: const TextStyle(color: Colors.white),
+      prefixIcon: Icon(icon, color: Colors.grey,)
+    );
+  }
 }

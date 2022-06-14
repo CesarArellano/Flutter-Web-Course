@@ -31,7 +31,7 @@ class _LinkTextState extends State<LinkText> {
           child: Text(
             widget.text,
             style: GoogleFonts.poppins().copyWith(
-              color: Colors.grey[700],
+              color: Colors.grey[500],
               fontSize: 16,
               decoration: isHover ? TextDecoration.underline : TextDecoration.none
           )),
