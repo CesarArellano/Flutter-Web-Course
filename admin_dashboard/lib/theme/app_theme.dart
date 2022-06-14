@@ -14,6 +14,9 @@ class AppTheme {
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor
+    ),
+    scrollbarTheme: const ScrollbarThemeData().copyWith(
+      thumbColor: MaterialStateProperty.all( Colors.grey[400] )
     )
   );
 }

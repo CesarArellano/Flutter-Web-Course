@@ -5,17 +5,15 @@ class BackgroundTwitter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
+      decoration: _buildBoxDecoration(),
       child: Container(
-        decoration: _buildBoxDecoration(),
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 400),
-          width: 400,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Center(
-              child: Image.asset('assets/twitter-white-logo.png'),
-            ),
+        constraints: const BoxConstraints(maxWidth: 400),
+        width: 400,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Center(
+            child: Image.asset('assets/twitter-white-logo.png'),
           ),
         ),
       ),
