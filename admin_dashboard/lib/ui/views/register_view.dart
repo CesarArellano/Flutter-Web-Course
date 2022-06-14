@@ -54,7 +54,7 @@ class RegisterView extends StatelessWidget {
                 const SizedBox(height: 20,),
                 CustomOutlinedButton(
                   text: 'Registrar',
-                  textStyle: GoogleFonts.poppins().copyWith(color: Colors.blue),
+                  textStyle: GoogleFonts.poppins().copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
                   minWidth: double.infinity,
                   onPressed: () {
                     
