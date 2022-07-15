@@ -24,6 +24,7 @@ class AppTheme {
     required String hintText,
     required String label,
     IconData? icon,
+    Widget? suffixIcon,
   }) {
     return InputDecoration(
       border: const OutlineInputBorder(
@@ -36,7 +37,8 @@ class AppTheme {
       hintStyle: const TextStyle(color: Colors.grey),
       label: Text(label),
       labelStyle: const TextStyle(color: Colors.white),
-      prefixIcon: Icon(icon, color: Colors.grey,)
+      prefixIcon: Icon(icon, color: Colors.grey,),
+      suffixIcon: suffixIcon,
     );
   }
 }
