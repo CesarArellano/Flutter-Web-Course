@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../shared/navbar.dart';
 import '../../shared/sidebar.dart';
 
 class DashboardLayout extends StatelessWidget {
@@ -20,7 +21,14 @@ class DashboardLayout extends StatelessWidget {
         children: [
           // TODO: This depends on whether the screen is large than 700 px
           const Sidebar(),
-          Expanded(child: child),
+          Expanded(
+            child: Column(
+              children: [
+                const NavBar(),
+                Expanded(child: child),
+              ],
+            ),
+          ),
         ],
       )
     );

@@ -7,9 +7,9 @@ import '../../extensions/null_extensions.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/register_form_provider.dart';
 import '../../router/router.dart';
-import '../../theme/app_theme.dart';
 import '../buttons/custom_outlined_button.dart';
 import '../buttons/link_text.dart';
+import '../inputs/custom_inputs.dart';
 
 class RegisterView extends StatelessWidget {
   
@@ -48,7 +48,7 @@ class RegisterView extends StatelessWidget {
                           registerFormProvider.name = value;
                         },
                         style: const TextStyle(color: Colors.white),
-                        decoration: AppTheme.buildInputDecoration(
+                        decoration: CustomInputs.buildInputDecoration(
                           hintText: 'Ingrese su nombre',
                           label: 'Nombre',
                           icon: Icons.person_outline
@@ -67,7 +67,7 @@ class RegisterView extends StatelessWidget {
                           registerFormProvider.email = value;
                         },
                         style: const TextStyle(color: Colors.white),
-                        decoration: AppTheme.buildInputDecoration(
+                        decoration: CustomInputs.buildInputDecoration(
                           hintText: 'Ingrese su correo',
                           label: 'Email',
                           icon: Icons.email_outlined
@@ -92,7 +92,7 @@ class RegisterView extends StatelessWidget {
                         },
                         obscureText: registerFormProvider.showPassword,
                         style: const TextStyle(color: Colors.white),
-                        decoration: AppTheme.buildInputDecoration(
+                        decoration: CustomInputs.buildInputDecoration(
                           hintText: '********',
                           label: 'Contraseña',
                           icon: Icons.lock_outline,

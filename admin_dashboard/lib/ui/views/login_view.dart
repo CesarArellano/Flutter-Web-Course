@@ -7,9 +7,9 @@ import '../../extensions/null_extensions.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/login_form_provider.dart';
 import '../../router/router.dart';
-import '../../theme/app_theme.dart';
 import '../buttons/custom_outlined_button.dart';
 import '../buttons/link_text.dart';
+import '../inputs/custom_inputs.dart';
 
 class LoginView extends StatelessWidget {
   
@@ -45,7 +45,7 @@ class LoginView extends StatelessWidget {
                           loginFormProvider.email = value;
                         },
                         style: const TextStyle(color: Colors.white),
-                        decoration: AppTheme.buildInputDecoration(
+                        decoration: CustomInputs.buildInputDecoration(
                           hintText: 'Ingrese su correo',
                           label: 'Email',
                           icon: Icons.email_outlined
@@ -70,7 +70,7 @@ class LoginView extends StatelessWidget {
                         },
                         obscureText: loginFormProvider.showPassword,
                         style: const TextStyle(color: Colors.white),
-                        decoration: AppTheme.buildInputDecoration(
+                        decoration: CustomInputs.buildInputDecoration(
                           hintText: '********',
                           label: 'Contraseña',
                           icon: Icons.lock_outline,

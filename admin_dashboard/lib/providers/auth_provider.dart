@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:admin_dashboard/extensions/null_extensions.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/local_storage.dart';
@@ -23,7 +25,7 @@ class AuthProvider extends ChangeNotifier {
     _token = 'asdfghjklñqwertyuiop';
     LocalStorage.prefs.setString('token', _token.valueEmpty('') );
     authStatus = AuthStatus.authenticated;
-    print('Store JWT: $_token, $email, $password');
+    log('Store JWT: $_token, $email, $password');
     notifyListeners();
     NavigationService.replaceTo(Flurorouter.dashboardRoute);
   }

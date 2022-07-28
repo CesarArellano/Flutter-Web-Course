@@ -18,7 +18,7 @@ class TextSeparator extends StatelessWidget {
         text,
         style: GoogleFonts.poppins().copyWith(
           color: Colors.white.withOpacity(0.7),
-          fontSize: 12
+          fontSize: 13
         )
       ),
     ); 

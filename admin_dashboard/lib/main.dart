@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,15 +44,16 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
       builder: ( _, child) {
-        print('Token: ${ LocalStorage.prefs.getString('token') }');
+        child ??= const SizedBox();
+        log('Token: ${ LocalStorage.prefs.getString('token') }');
         final authProvider = Provider.of<AuthProvider>(context);
         if( authProvider.authStatus == AuthStatus.checking ) {
           return const SplashLayout();
         }
         if( authProvider.authStatus == AuthStatus.authenticated ) {
-          return DashboardLayout(child: child ?? const SizedBox());
+          return DashboardLayout(child: child);
         }
-        return AuthLayout(child: child ?? const SizedBox());
+        return AuthLayout(child: child);
       },
     );
   }
