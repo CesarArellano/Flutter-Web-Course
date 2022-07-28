@@ -1,14 +1,24 @@
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/side_menu_provider.dart';
+import 'widgets/custom_menu_item.dart';
 import 'widgets/logo.dart';
 import 'widgets/text_separator.dart';
-import 'widgets/custom_menu_item.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
+  
+  void navigateTo( String routeName ) {
+    NavigationService.navigateTo(routeName);
+    SideMenuProvider.closeMenu();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final sideMenuProvider = Provider.of<SideMenuProvider>(context);
     return Container(
       width: 200,
       height: double.infinity,
@@ -22,49 +32,41 @@ class Sidebar extends StatelessWidget {
           CustomMenuItem(
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
-            isActive: false,
-            onPressed: () {
-            }
+            isActive: sideMenuProvider.currentPage == Flurorouter.dashboardRoute,
+            onPressed: () => navigateTo(Flurorouter.dashboardRoute)
           ),
           CustomMenuItem(
             text: 'Orders',
             icon: Icons.shopping_cart_outlined,
-            isActive: false,
-            onPressed: () {
-            }
+            onPressed: () => SideMenuProvider.closeMenu(),
           ),
           CustomMenuItem(
             text: 'Analytic',
             icon: Icons.show_chart_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
           CustomMenuItem(
             text: 'Categories',
             icon: Icons.layers_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
           CustomMenuItem(
             text: 'Products',
             icon: Icons.dashboard_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
           CustomMenuItem(
             text: 'Discount',
             icon: Icons.attach_money_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
           CustomMenuItem(
             text: 'Customers',
             icon: Icons.people_alt_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
@@ -73,31 +75,29 @@ class Sidebar extends StatelessWidget {
           CustomMenuItem(
             text: 'Icons',
             icon: Icons.list_alt_outlined,
-            isActive: false,
-            onPressed: () {
-            }
+            isActive: sideMenuProvider.currentPage == Flurorouter.iconsRoute,
+            onPressed: () => navigateTo(Flurorouter.iconsRoute)
           ),
           CustomMenuItem(
             text: 'Marketing',
             icon: Icons.mark_email_read_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
           CustomMenuItem(
             text: 'Campaing',
             icon: Icons.note_add_outlined,
-            isActive: false,
             onPressed: () {
             }
           ),
           CustomMenuItem(
-            text: 'Black',
+            text: 'Blank',
             icon: Icons.post_add_outlined,
-            isActive: false,
-            onPressed: () {
-            }
+            isActive: sideMenuProvider.currentPage == Flurorouter.blankRoute,
+            onPressed: () => navigateTo(Flurorouter.blankRoute)
           ),
+          const SizedBox(height: 50),
+          const TextSeparator( text: 'Exit'),
           CustomMenuItem(
             text: 'Logout',
             icon: Icons.exit_to_app_outlined,

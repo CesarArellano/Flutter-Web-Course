@@ -35,7 +35,7 @@ class _CustomMenuItemState extends State<CustomMenuItem> {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: widget.isActive ? null : () => widget.onPressed,
+            onTap: widget.isActive ? null : widget.onPressed,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Row(

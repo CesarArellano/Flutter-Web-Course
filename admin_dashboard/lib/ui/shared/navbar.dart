@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/side_menu_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/search_text.dart';
@@ -7,6 +8,7 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       height: 50,
@@ -14,18 +16,20 @@ class NavBar extends StatelessWidget {
       child: Row(
         children: [
           const SizedBox(width: 5),
-          Material(
-            child: IconButton(
-              icon: const Icon(Icons.menu_outlined),
-              onPressed: (){},
-              splashRadius: 20,
+          if( size.width <= 700 )
+            Material(
+              child: IconButton(
+                icon: const Icon(Icons.menu_outlined),
+                onPressed: () => SideMenuProvider.openMenu(),
+                splashRadius: 20,
+              ),
             ),
-          ),
           const SizedBox(width: 5),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 250),
-            child: const SearchText(),
-          ),
+          if( size.width > 400 )
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 250),
+              child: const SearchText(),
+            ),
           const Spacer(),
           const _NotificationIndicator(),
           const SizedBox(width: 5),

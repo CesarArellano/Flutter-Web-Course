@@ -8,6 +8,7 @@ class NoPageFoundView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEDF1F2),
       body: Center(
         child: Text(
           '404 - Page Not Found',
