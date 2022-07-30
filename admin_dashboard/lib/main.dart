@@ -1,10 +1,12 @@
 import 'dart:developer';
 
-import 'package:admin_dashboard/providers/side_menu_provider.dart';
+import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'api/cafe_api.dart';
 import 'providers/auth_provider.dart';
+import 'providers/side_menu_provider.dart';
 import 'router/router.dart';
 import 'services/local_storage.dart';
 import 'services/navigation_service.dart';
@@ -15,6 +17,7 @@ import 'ui/layouts/splash/splash_layout.dart';
 
 void main() async {
   await LocalStorage.configurePrefs();
+  CafeApi.configureDio();
   Flurorouter.configureRoutes();
   runApp(const AppState());
 }
@@ -45,6 +48,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Flurorouter.rootRoute,
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
+      scaffoldMessengerKey: NotificationService.messengerKey,
       builder: ( _, child) {
         child ??= const SizedBox();
         log('Token: ${ LocalStorage.prefs.getString('token') }');

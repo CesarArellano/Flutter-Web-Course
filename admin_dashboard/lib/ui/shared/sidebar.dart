@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:flutter/material.dart';
@@ -103,6 +104,7 @@ class Sidebar extends StatelessWidget {
             icon: Icons.exit_to_app_outlined,
             isActive: false,
             onPressed: () {
+              Provider.of<AuthProvider>(context, listen: false).logout();
             }
           ),
         ],

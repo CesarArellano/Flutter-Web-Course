@@ -34,6 +34,7 @@ class LoginView extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(loginFormProvider, authProvider),
                         validator: ( value ) {
                           final newValue = value.value();
                           if( !EmailValidator.validate(newValue) ) {
@@ -53,6 +54,7 @@ class LoginView extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(loginFormProvider, authProvider),
                         validator: ( value ) {
                           final newValue = value.value();
         
@@ -90,12 +92,7 @@ class LoginView extends StatelessWidget {
                         text: 'Iniciar sesión',
                         textStyle: GoogleFonts.poppins().copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
                         minWidth: double.infinity,
-                        onPressed: () {
-                          final isValid = loginFormProvider.validateForm();
-                          if( isValid ) {
-                            authProvider.login(loginFormProvider.email, loginFormProvider.password);
-                          }
-                        }
+                        onPressed: () => onFormSubmit(loginFormProvider, authProvider)
                       ),
                       const SizedBox(height: 20,),
                       LinkText(
@@ -113,5 +110,12 @@ class LoginView extends StatelessWidget {
         },
       )
     );
+  }
+
+  void onFormSubmit( LoginFormProvider loginFormProvider, AuthProvider authProvider) {
+    final isValid = loginFormProvider.validateForm();
+    if( isValid ) {
+      authProvider.login(loginFormProvider.email, loginFormProvider.password);
+    }
   }
 }

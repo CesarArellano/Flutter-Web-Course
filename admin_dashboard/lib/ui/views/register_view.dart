@@ -35,6 +35,7 @@ class RegisterView extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(registerFormProvider, authProvider),
                         validator: ( value ) {
                           final newValue = value.value();
         
@@ -56,6 +57,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       const SizedBox(height: 15,),
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(registerFormProvider, authProvider),
                         validator: ( value ) {
                           final newValue = value.value();
                           if( !EmailValidator.validate(newValue) ) {
@@ -75,6 +77,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       const SizedBox(height: 15,),
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(registerFormProvider, authProvider),
                         validator: ( value ) {
                           final newValue = value.value();
         
@@ -88,7 +91,7 @@ class RegisterView extends StatelessWidget {
                           return null;
                         },
                         onChanged: ( value ) {
-                          registerFormProvider.email = value;
+                          registerFormProvider.password = value;
                         },
                         obscureText: registerFormProvider.showPassword,
                         style: const TextStyle(color: Colors.white),
@@ -112,12 +115,7 @@ class RegisterView extends StatelessWidget {
                         text: 'Registrar',
                         textStyle: GoogleFonts.poppins().copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
                         minWidth: double.infinity,
-                        onPressed: () {
-                          final isValid = registerFormProvider.validateForm();
-                          if( isValid ) {
-                            authProvider.login(registerFormProvider.email, registerFormProvider.password);
-                          }
-                        },
+                        onPressed: () => onFormSubmit(registerFormProvider, authProvider),
                       ),
                       const SizedBox(height: 20,),
                       LinkText(
@@ -135,5 +133,12 @@ class RegisterView extends StatelessWidget {
         }, 
       ),
     );
+  }
+  
+  void onFormSubmit(RegisterFormProvider registerFormProvider, AuthProvider authProvider) {
+    final isValid = registerFormProvider.validateForm();
+    if( isValid ) {
+      authProvider.register(registerFormProvider.name, registerFormProvider.email, registerFormProvider.password);
+    }
   }
 }
