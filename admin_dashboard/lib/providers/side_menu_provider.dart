@@ -8,7 +8,7 @@ class SideMenuProvider extends ChangeNotifier {
 
   String get currentPage => _currentPage;
 
-  void setCurrentPageUrl( String routeName) async {
+  void setCurrentPageUrl( String routeName ) async {
     _currentPage = routeName;
     await Future.delayed(const Duration(milliseconds: 100));
     notifyListeners();
