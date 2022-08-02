@@ -1,15 +1,16 @@
 import 'dart:developer';
 
-import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'api/cafe_api.dart';
 import 'providers/auth_provider.dart';
+import 'providers/categories_provider.dart';
 import 'providers/side_menu_provider.dart';
 import 'router/router.dart';
 import 'services/local_storage.dart';
 import 'services/navigation_service.dart';
+import 'services/notification_service.dart';
 import 'theme/app_theme.dart';
 import 'ui/layouts/auth/auth_layout.dart';
 import 'ui/layouts/dashboard/dashboard_layout.dart';
@@ -30,7 +31,8 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider(), lazy: false),
-        ChangeNotifierProvider(create: (_) => SideMenuProvider(), lazy: false)
+        ChangeNotifierProvider(create: (_) => SideMenuProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => CategoriesProvider()),
       ],
       child: const MyApp(),
     );

@@ -1,15 +1,36 @@
 import 'package:admin_dashboard/datatables/categories_datasource.dart';
+import 'package:admin_dashboard/providers/categories_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../models/categories_response.dart';
+import '../buttons/custom_icon_button.dart';
 import '../labels/custom_labels.dart';
 
-class CategoriesView extends StatelessWidget {
+class CategoriesView extends StatefulWidget {
   const CategoriesView({Key? key}) : super(key: key);
 
   @override
+  State<CategoriesView> createState() => _CategoriesViewState();
+}
+
+class _CategoriesViewState extends State<CategoriesView> {
+
+  int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
+  
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<CategoriesProvider>(context, listen: false).getCategories();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    List<Categoria> categorias = Provider.of<CategoriesProvider>(context).categories;
     return SizedBox(
       child: ListView(
+        padding: const EdgeInsets.only(right: 15),
         physics: const ClampingScrollPhysics(),
         children: [
           Text('Categories View', style: CustomLabels.h1),
@@ -21,7 +42,24 @@ class CategoriesView extends StatelessWidget {
               DataColumn(label: Text('Creado por')),
               DataColumn(label: Text('Acciones')),
             ],
-            source: CategoriesDTS(),
+            source: CategoriesDTS( categorias ),
+            header: const Text('Categorias'),
+
+            rowsPerPage: _rowsPerPage,
+            onRowsPerPageChanged: (value) {
+              setState(() {
+                _rowsPerPage = value ?? PaginatedDataTable.defaultRowsPerPage;
+              });
+            },
+            actions: [
+              CustomIconButton(
+                text: 'Agregar',
+                icon: Icons.add_outlined,
+                onPressed: (){
+                  print('Helloo');
+                },
+              )
+            ],
           )
         ],
       ),
