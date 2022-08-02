@@ -10,6 +10,7 @@ class BlankView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         physics: const ClampingScrollPhysics(),
         children: [
           Text('Blank View', style: CustomLabels.h1),

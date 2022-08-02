@@ -14,6 +14,7 @@ class DashboardView extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     return SizedBox(
       child: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         physics: const ClampingScrollPhysics(),
         children: [
           Text('Dashboard View', style: CustomLabels.h1),

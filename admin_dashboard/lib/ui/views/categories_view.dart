@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/datatables/categories_datasource.dart';
 import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/ui/modals/category_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,7 @@ class _CategoriesViewState extends State<CategoriesView> {
     List<Categoria> categorias = Provider.of<CategoriesProvider>(context).categories;
     return SizedBox(
       child: ListView(
-        padding: const EdgeInsets.only(right: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         physics: const ClampingScrollPhysics(),
         children: [
           Text('Categories View', style: CustomLabels.h1),
@@ -42,7 +43,7 @@ class _CategoriesViewState extends State<CategoriesView> {
               DataColumn(label: Text('Creado por')),
               DataColumn(label: Text('Acciones')),
             ],
-            source: CategoriesDTS( categorias ),
+            source: CategoriesDTS( categorias, context ),
             header: const Text('Categorias'),
 
             rowsPerPage: _rowsPerPage,
@@ -56,7 +57,11 @@ class _CategoriesViewState extends State<CategoriesView> {
                 text: 'Agregar',
                 icon: Icons.add_outlined,
                 onPressed: (){
-                  print('Helloo');
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (_) => const CategoryModal(categoria: null)
+                  );
                 },
               )
             ],
