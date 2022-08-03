@@ -46,6 +46,14 @@ class Categoria {
     "nombre": nombre,
     "usuario": usuario?.toJson(),
   };
+
+  Categoria copyWith({String? id, String? nombre, User? usuario}) {
+    return Categoria(
+      id: id ?? this.id,
+      nombre: nombre ?? this.nombre,
+      usuario: usuario ?? this.usuario,
+    );
+  }
 }
 
 class User {

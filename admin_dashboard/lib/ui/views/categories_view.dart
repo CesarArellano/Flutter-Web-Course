@@ -45,7 +45,6 @@ class _CategoriesViewState extends State<CategoriesView> {
             ],
             source: CategoriesDTS( categorias, context ),
             header: const Text('Categorias'),
-
             rowsPerPage: _rowsPerPage,
             onRowsPerPageChanged: (value) {
               setState(() {
@@ -56,11 +55,11 @@ class _CategoriesViewState extends State<CategoriesView> {
               CustomIconButton(
                 text: 'Agregar',
                 icon: Icons.add_outlined,
-                onPressed: (){
+                onPressed: () {
                   showModalBottomSheet(
                     backgroundColor: Colors.transparent,
                     context: context,
-                    builder: (_) => const CategoryModal(categoria: null)
+                    builder: (_) => const CategoryModal()
                   );
                 },
               )

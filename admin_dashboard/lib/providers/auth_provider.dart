@@ -44,7 +44,7 @@ class AuthProvider extends ChangeNotifier {
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
     }catch(e) {
       log(e.toString());
-      NotificationService.showSnackBarError('Usuario / Password no válidos');
+      NotificationService.showSnackBar('Usuario / Password no válidos', backgroundColor: Colors.red);
     }   
   }
 
@@ -69,7 +69,7 @@ class AuthProvider extends ChangeNotifier {
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
     }catch(e) {
       log(e.toString());
-      NotificationService.showSnackBarError('Usuario / Password no válidos');
+      NotificationService.showSnackBar('Usuario / Password no válidos', backgroundColor: Colors.red);
     }   
   }
 

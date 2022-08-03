@@ -25,7 +25,7 @@ class CafeApi {
       return resp.data;
     } catch (e) {
       log(e.toString());
-      throw('Error in GET REQUEST');
+      return null;
     }
   }
 
@@ -34,6 +34,20 @@ class CafeApi {
     try {
       log('URL: ${ _dio.options.baseUrl }$path, data: $data ');
       final resp = await _dio.post( path, data: formData ).catchError((error) {
+        log(error);
+      });
+      return resp.data;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  static Future<dynamic> httpPut(String path, Map<String, dynamic> data) async {
+    final formData = FormData.fromMap(data);
+    try {
+      log('URL: ${ _dio.options.baseUrl }$path, data: $data ');
+      final resp = await _dio.put( path, data: formData ).catchError((error) {
         log(error);
       });
       return resp.data;

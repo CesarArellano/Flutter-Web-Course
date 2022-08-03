@@ -1,7 +1,11 @@
-import 'dart:developer';
 
+import 'package:admin_dashboard/extensions/null_extensions.dart';
 import 'package:admin_dashboard/models/categories_response.dart';
+import 'package:admin_dashboard/providers/categories_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../ui/modals/category_modal.dart';
 
 class CategoriesDTS extends DataTableSource {
   BuildContext context;
@@ -15,7 +19,7 @@ class CategoriesDTS extends DataTableSource {
     return DataRow.byIndex(
       index: index,
       cells: [
-        DataCell(Text('${ category.id }'), onTap: () => log('Cell 1')),
+        DataCell(Text('${ category.id }')),
         DataCell(Text('${ category.nombre }')),
         DataCell(Text('${ category.usuario?.nombre }')),
         DataCell(
@@ -24,7 +28,13 @@ class CategoriesDTS extends DataTableSource {
               IconButton(
                 splashRadius: 20,
                 icon: const Icon(Icons.edit, color: Colors.blue),
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (_) => CategoryModal(categoria: category)
+                  );
+                },
               ),
               IconButton(
                 splashRadius: 20,
@@ -32,7 +42,7 @@ class CategoriesDTS extends DataTableSource {
                 onPressed: () {
                   final dialog = AlertDialog(
                     title: const Text('¿Está seguro de borrarla?'),
-                    content: const Text('Se borrará la categoría'),
+                    content: Text('Se borrará la categoría ${ category.nombre.value() }'),
                     actions: [
                       TextButton(
                         child: const Text('No'),
@@ -40,7 +50,11 @@ class CategoriesDTS extends DataTableSource {
                       ),
                       TextButton(
                         child: const Text('Si, borrar'),
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {
+                          Provider.of<CategoriesProvider>(context, listen: false).removeCategory(category.id.value()).then(( _ ){
+                            Navigator.of(context).pop();
+                          });
+                        }
                       ),
                     ],
                   );
