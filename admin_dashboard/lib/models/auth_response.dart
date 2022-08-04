@@ -32,6 +32,7 @@ class Usuario {
     this.nombre,
     this.correo,
     this.uid,
+    this.img,
   });
 
   String? rol;
@@ -40,6 +41,7 @@ class Usuario {
   String? nombre;
   String? correo;
   String? uid;
+  String? img;
 
   factory Usuario.fromJson(Map<String, dynamic> json) => Usuario(
     rol: json["rol"],
@@ -48,6 +50,7 @@ class Usuario {
     nombre: json["nombre"],
     correo: json["correo"],
     uid: json["uid"],
+    img: json["img"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +60,6 @@ class Usuario {
     "nombre": nombre,
     "correo": correo,
     "uid": uid,
+    "img": img,
   };
 }

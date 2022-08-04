@@ -18,18 +18,26 @@ class CategoriesView extends StatefulWidget {
 class _CategoriesViewState extends State<CategoriesView> {
 
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
-  
+  bool _loading = false;
 
   @override
   void initState() {
     super.initState();
-    Provider.of<CategoriesProvider>(context, listen: false).getCategories();
+    getCategories();
+  }
+
+  Future<void> getCategories() async {
+    setState(() => _loading = true);
+    await Provider.of<CategoriesProvider>(context, listen: false).getCategories();
+    setState(() => _loading = false);
   }
 
   @override
   Widget build(BuildContext context) {
     List<Categoria> categorias = Provider.of<CategoriesProvider>(context).categories;
-    return SizedBox(
+    return _loading
+    ? const Center( child: CircularProgressIndicator() )
+    : SizedBox(
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         physics: const ClampingScrollPhysics(),

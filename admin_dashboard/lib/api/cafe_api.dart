@@ -23,8 +23,8 @@ class CafeApi {
     try {
       final resp = await _dio.get(path);
       return resp.data;
-    } catch (e) {
-      log(e.toString());
+    } on DioError catch (e) {
+      log(e.response.toString());
       return null;
     }
   }
@@ -37,8 +37,8 @@ class CafeApi {
         log(error);
       });
       return resp.data;
-    } catch (e) {
-      log(e.toString());
+    } on DioError catch (e) {
+      log(e.response.toString());
       return null;
     }
   }
@@ -51,8 +51,8 @@ class CafeApi {
         log(error);
       });
       return resp.data;
-    } catch (e) {
-      log(e.toString());
+    } on DioError catch (e) {
+      log(e.response.toString());
       return null;
     }
   }

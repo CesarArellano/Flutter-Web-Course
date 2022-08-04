@@ -7,6 +7,8 @@ import 'api/cafe_api.dart';
 import 'providers/auth_provider.dart';
 import 'providers/categories_provider.dart';
 import 'providers/side_menu_provider.dart';
+import 'providers/user_form_provider.dart';
+import 'providers/users_provider.dart';
 import 'router/router.dart';
 import 'services/local_storage.dart';
 import 'services/navigation_service.dart';
@@ -32,7 +34,9 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider(), lazy: false),
         ChangeNotifierProvider(create: (_) => SideMenuProvider(), lazy: false),
+        ChangeNotifierProvider(create: (_) => UsersProvider(), lazy: false),
         ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => UserFormProvider()),
       ],
       child: const MyApp(),
     );
@@ -55,12 +59,15 @@ class MyApp extends StatelessWidget {
         child ??= const SizedBox();
         log('Token: ${ LocalStorage.prefs.getString('token') }');
         final authProvider = Provider.of<AuthProvider>(context);
+        
         if( authProvider.authStatus == AuthStatus.checking ) {
           return const SplashLayout();
         }
+
         if( authProvider.authStatus == AuthStatus.authenticated ) {
           return DashboardLayout(child: child);
         }
+        
         return AuthLayout(child: child);
       },
     );
