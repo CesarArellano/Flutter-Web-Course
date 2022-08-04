@@ -4,19 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'api/cafe_api.dart';
-import 'providers/auth_provider.dart';
-import 'providers/categories_provider.dart';
-import 'providers/side_menu_provider.dart';
-import 'providers/user_form_provider.dart';
-import 'providers/users_provider.dart';
+import 'providers/providers.dart';
 import 'router/router.dart';
-import 'services/local_storage.dart';
-import 'services/navigation_service.dart';
-import 'services/notification_service.dart';
+import 'services/services.dart';
 import 'theme/app_theme.dart';
-import 'ui/layouts/auth/auth_layout.dart';
-import 'ui/layouts/dashboard/dashboard_layout.dart';
-import 'ui/layouts/splash/splash_layout.dart';
+import 'ui/layouts/layouts.dart';
+
 
 void main() async {
   await LocalStorage.configurePrefs();

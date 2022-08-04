@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 
@@ -47,6 +48,21 @@ class CafeApi {
     final formData = FormData.fromMap(data);
     try {
       log('URL: ${ _dio.options.baseUrl }$path, data: $data ');
+      final resp = await _dio.put( path, data: formData ).catchError((error) {
+        log(error);
+      });
+      return resp.data;
+    } on DioError catch (e) {
+      log(e.response.toString());
+      return null;
+    }
+  }
+
+  static Future<dynamic> uploadFile(String path, Uint8List bytes) async {
+    final formData = FormData.fromMap({
+      'archivo': MultipartFile.fromBytes(bytes)
+    });
+    try {
       final resp = await _dio.put( path, data: formData ).catchError((error) {
         log(error);
       });

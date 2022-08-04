@@ -1,9 +1,9 @@
 
-import 'package:admin_dashboard/extensions/null_extensions.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
+import '../extensions/null_extensions.dart';
 import '../models/auth_response.dart';
+import '../services/navigation_service.dart';
 
 class UserDTS extends DataTableSource {
   BuildContext context;
@@ -14,10 +14,14 @@ class UserDTS extends DataTableSource {
   @override
   DataRow? getRow(int index) {
     final user = users[index];
-    final image = Image(
-      image: (user.img != null) ? NetworkImage( user.img.value() ) : const AssetImage('no-image.jpg') as ImageProvider,
-      width: 35,
-      height: 35
+    final image = ClipOval(
+      child: Image(
+        image: (user.img != null) 
+          ? NetworkImage( user.img.value() ) 
+          : const AssetImage('no-image.jpg') as ImageProvider,
+        width: 35,
+        height: 35
+      ),
     );
     return DataRow.byIndex(
       index: index,

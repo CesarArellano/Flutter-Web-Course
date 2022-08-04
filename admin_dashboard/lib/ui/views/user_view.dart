@@ -1,5 +1,6 @@
-import 'package:admin_dashboard/services/notification_service.dart';
+
 import 'package:email_validator/email_validator.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +9,7 @@ import '../../models/auth_response.dart';
 import '../../providers/user_form_provider.dart';
 import '../../providers/users_provider.dart';
 import '../../services/navigation_service.dart';
+import '../../services/notification_service.dart';
 import '../buttons/custom_icon_button.dart';
 import '../cards/white_card.dart';
 import '../inputs/custom_inputs.dart';
@@ -191,10 +193,15 @@ class _AvatarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserFormProvider>(context).user;
+    final userFormProvider = Provider.of<UserFormProvider>(context);
+    final usersProvider = Provider.of<UsersProvider>(context);
+    final Usuario? user = userFormProvider.user;
+    
     return WhiteCard(
       width: 250,
-      child: SizedBox(
+      child: userFormProvider.isLoadingImage
+        ? const Center( child: CircularProgressIndicator() )
+        : SizedBox(
         width: 250,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -204,9 +211,12 @@ class _AvatarContainer extends StatelessWidget {
             const SizedBox(height: 10),
             Stack(
               children: [
-                const ClipOval(
-                  child: Image(
-                    image: AssetImage('no-image.jpg'),
+                ClipOval(
+                  child: FadeInImage(
+                    placeholder: const AssetImage('loader.gif'),
+                    image: ( user?.img != null )
+                      ? NetworkImage( (user?.img).value() )
+                      : const AssetImage('no-image.jpg') as ImageProvider,
                     width: 150,
                     height: 150,
                   ),
@@ -219,10 +229,8 @@ class _AvatarContainer extends StatelessWidget {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                     tooltip: 'Changed profile photo',
                     backgroundColor: Colors.indigo,
-                    child: const Icon(Icons.camera_alt_outlined),
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () => _onPicture(userFormProvider, usersProvider),
+                    child: const Icon(Icons.camera_alt_outlined)
                   ),
                 )
               ],
@@ -238,5 +246,28 @@ class _AvatarContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+  
+  Future _onPicture(UserFormProvider userFormProvider, UsersProvider usersProvider) async {
+    final FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png'],
+      allowMultiple: false,
+    );
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+      
+      final resp = await userFormProvider.uploadImage('/uploads/usuarios/${ userFormProvider.user?.uid }', file.bytes!);
+      if( resp == null ) {
+        return NotificationService.showSnackBar('Error, al actualizar imagen', backgroundColor: Colors.red);
+      }
+
+      NotificationService.showSnackBar('La imagen de perfil se actualizó exitosamente');
+      return usersProvider.refreshUser(resp);
+
+    } else {
+      NotificationService.showSnackBar('No seleccionó ninguna imagen', backgroundColor: Colors.red);
+    }
   }
 }
