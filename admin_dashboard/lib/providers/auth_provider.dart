@@ -39,11 +39,10 @@ class AuthProvider extends ChangeNotifier {
       _token = authResponse.token;
       LocalStorage.prefs.setString( 'token', _token.value() );
       authStatus = AuthStatus.authenticated;
-      log('Store JWT: $_token, $email, $password');
+      CafeApi.configureDio();
       notifyListeners();
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
     }catch(e) {
-      log(e.toString());
       NotificationService.showSnackBar('Usuario / Password no válidos', backgroundColor: Colors.red);
     }   
   }
@@ -64,10 +63,9 @@ class AuthProvider extends ChangeNotifier {
       _token = authResponse.token;
       LocalStorage.prefs.setString( 'token', _token.value() );
       authStatus = AuthStatus.authenticated;
-      log('Store JWT: $name, $email, $password');
       notifyListeners();
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
-    }catch(e) {
+    } catch(e) {
       log(e.toString());
       NotificationService.showSnackBar('Usuario / Password no válidos', backgroundColor: Colors.red);
     }   

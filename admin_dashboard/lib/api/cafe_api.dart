@@ -24,8 +24,7 @@ class CafeApi {
     try {
       final resp = await _dio.get(path);
       return resp.data;
-    } on DioError catch (e) {
-      log(e.response.toString());
+    } on DioError {
       return null;
     }
   }
@@ -33,10 +32,7 @@ class CafeApi {
   static Future<dynamic> httpPost(String path, Map<String, dynamic> data) async {
     final formData = FormData.fromMap(data);
     try {
-      log('URL: ${ _dio.options.baseUrl }$path, data: $data ');
-      final resp = await _dio.post( path, data: formData ).catchError((error) {
-        log(error);
-      });
+      final resp = await _dio.post( path, data: formData );
       return resp.data;
     } on DioError catch (e) {
       log(e.response.toString());
@@ -47,10 +43,7 @@ class CafeApi {
   static Future<dynamic> httpPut(String path, Map<String, dynamic> data) async {
     final formData = FormData.fromMap(data);
     try {
-      log('URL: ${ _dio.options.baseUrl }$path, data: $data ');
-      final resp = await _dio.put( path, data: formData ).catchError((error) {
-        log(error);
-      });
+      final resp = await _dio.put( path, data: formData );
       return resp.data;
     } on DioError catch (e) {
       log(e.response.toString());
@@ -63,9 +56,7 @@ class CafeApi {
       'archivo': MultipartFile.fromBytes(bytes)
     });
     try {
-      final resp = await _dio.put( path, data: formData ).catchError((error) {
-        log(error);
-      });
+      final resp = await _dio.put( path, data: formData );
       return resp.data;
     } on DioError catch (e) {
       log(e.response.toString());

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +49,6 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: NotificationService.messengerKey,
       builder: ( _, child) {
         child ??= const SizedBox();
-        log('Token: ${ LocalStorage.prefs.getString('token') }');
         final authProvider = Provider.of<AuthProvider>(context);
         
         if( authProvider.authStatus == AuthStatus.checking ) {
